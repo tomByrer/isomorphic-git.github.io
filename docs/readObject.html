@@ -1,0 +1,69 @@
+<html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>readObject · isomorphic-git</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta property="og:title" content="readObject · isomorphic-git"/><meta property="og:type" content="website"/><meta property="og:url" content="https://isomorphic-git.github.io/index.html"/><meta property="og:description" content="Read a git object directly by its SHA1 object id"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/gitter.js"></script><script type="text/javascript" src="/js/sidecar.v1.js"></script><script type="text/javascript" src="/js/browserfs.js"></script><script type="text/javascript" src="https://unpkg.com/isomorphic-git"></script><script type="text/javascript" src="/js/fs.js"></script><script type="text/javascript" src="/js/object-inspector.min.js"></script><script type="text/javascript" src="/js/tutorial.js"></script><script type="text/javascript" src="//static.getclicky.com/js"></script><script type="text/javascript" src="/js/analytics.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/isomorphic-git-logo.svg"/><h2 class="headerTitle">isomorphic-git</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li><a href="/docs/alphabetic.html" target="_self">API Docs</a></li><li><a href="/docs/getting_started.html" target="_self">Manual</a></li><li><a href="/en/help.html" target="_self">Help</a></li><li><a href="https://github.com/isomorphic-git/isomorphic-git" target="_self">Github</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Plumbing Commands</span></h2></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>All Commands</h3><ul><li class="navListItem"><a class="navItem" href="/docs/alphabetic.html">Alphabetical Index</a></li></ul></div><div class="navGroup navGroupActive"><h3>Basic Commands</h3><ul><li class="navListItem"><a class="navItem" href="/docs/init.html">init</a></li><li class="navListItem"><a class="navItem" href="/docs/clone.html">clone</a></li><li class="navListItem"><a class="navItem" href="/docs/listBranches.html">listBranches</a></li><li class="navListItem"><a class="navItem" href="/docs/listTags.html">listTags</a></li><li class="navListItem"><a class="navItem" href="/docs/listFiles.html">listFiles</a></li><li class="navListItem"><a class="navItem" href="/docs/add.html">add</a></li><li class="navListItem"><a class="navItem" href="/docs/remove.html">remove</a></li><li class="navListItem"><a class="navItem" href="/docs/status.html">status</a></li><li class="navListItem"><a class="navItem" href="/docs/commit.html">commit</a></li><li class="navListItem"><a class="navItem" href="/docs/log.html">log</a></li><li class="navListItem"><a class="navItem" href="/docs/config.html">config</a></li><li class="navListItem"><a class="navItem" href="/docs/fetch.html">fetch</a></li><li class="navListItem"><a class="navItem" href="/docs/checkout.html">checkout</a></li><li class="navListItem"><a class="navItem" href="/docs/push.html">push</a></li></ul></div><div class="navGroup navGroupActive"><h3>PGP Signing</h3><ul><li class="navListItem"><a class="navItem" href="/docs/sign.html">sign</a></li><li class="navListItem"><a class="navItem" href="/docs/verify.html">verify</a></li></ul></div><div class="navGroup navGroupActive"><h3>Plumbing Commands</h3><ul><li class="navListItem"><a class="navItem" href="/docs/findRoot.html">findRoot</a></li><li class="navListItem"><a class="navItem" href="/docs/resolveRef.html">resolveRef</a></li><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/docs/readObject.html">readObject</a></li><li class="navListItem"><a class="navItem" href="/docs/indexPack.html">indexPack</a></li></ul></div><div class="navGroup navGroupActive"><h3>Utility Commands</h3><ul><li class="navListItem"><a class="navItem" href="/docs/utils_auth.html">utils.auth</a></li><li class="navListItem"><a class="navItem" href="/docs/utils_oauth2.html">utils.oauth2</a></li><li class="navListItem"><a class="navItem" href="/docs/version.html">version</a></li></ul></div></div></section></div><script>
+          var toggler = document.getElementById('navToggler');
+          var nav = document.getElementById('docsNav');
+          toggler.onclick = function() {
+            nav.classList.toggle('docsSliderActive');
+          };
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1>readObject</h1></header><article><div><span><p>Read a git object directly by its SHA1 object id</p>
+<table>
+<thead>
+<tr><th>param</th><th>type [= default]</th><th>description</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>fs</strong>, <strong>dir</strong>, gitdir</td><td>FSModule, string, string</td><td>The filesystem holding the git repo, the <a href="/docs/dir-vs-gitdir.html">working tree</a> directory path, and optionally the <a href="/docs/dir-vs-gitdir.html">git directory</a> path</td></tr>
+<tr><td><strong>oid</strong></td><td>string</td><td>The SHA-1 object id to get.</td></tr>
+<tr><td><strong>format</strong></td><td>string = 'parsed'</td><td>What format to return the object in. The possible choices are listed below.</td></tr>
+<tr><td>return</td><td>Promise&lt;GitObjectDescription&gt;</td><td>Resolves successfully with an array of tag names</td></tr>
+</tbody>
+</table>
+<p><code>format</code> can have the following values:</p>
+<table>
+<thead>
+<tr><th>param</th><th>description</th></tr>
+</thead>
+<tbody>
+<tr><td>'deflated'</td><td>Return the raw deflate-compressed buffer for an object if possible. Useful for efficiently shuffling around loose objects when you don't care about the contents and can save time by not inflating them.</td></tr>
+<tr><td>'wrapped'</td><td>Return the inflated object buffer wrapped in the git object header if possible. This is the raw data used when calculating the SHA object id of a git object.</td></tr>
+<tr><td>'content'</td><td>Return the object buffer without the git header.</td></tr>
+<tr><td>'parsed'</td><td>Returns a parsed representation of the object.</td></tr>
+</tbody>
+</table>
+<p>Returns an object with a schema like this:</p>
+<pre><code class="hljs css ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> GitObjectDescription {
+  <span class="hljs-comment">// Note: The type is not included for 'deflated' and 'wrapped' formatted objects</span>
+  <span class="hljs-comment">// because you likely don't care or plan to decode that information yourself.</span>
+  <span class="hljs-keyword">type</span>?: <span class="hljs-string">'blob'</span> | <span class="hljs-string">'tree'</span> | <span class="hljs-string">'commit'</span> | <span class="hljs-string">'tag'</span>,
+
+  <span class="hljs-comment">// This is usually, but not always, the format you requested. Packfiles do not store</span>
+  <span class="hljs-comment">// each object individually compressed so if you end up reading the object from a packfile</span>
+  <span class="hljs-comment">// it will be returned in format 'content' even if you requested 'deflated' or 'wrapped'.</span>
+  format: <span class="hljs-string">'deflated'</span> | <span class="hljs-string">'wrapped'</span> | <span class="hljs-string">'content'</span> | <span class="hljs-string">'parsed'</span>,
+
+  <span class="hljs-comment">// If format is 'parsed', commits and trees are returned as Objects, but blobs are still formatted as Buffers.</span>
+  <span class="hljs-comment">// If format is anything other than 'parsed', object will be a Buffer.</span>
+  <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Eventually there will be a TagDescription as well for parsing annotated tags.</span>
+  object: Buffer | CommitDescription | TreeDescription,
+
+  <span class="hljs-comment">// This is the name of the packfile or loose object file where the object was found.</span>
+  source?: <span class="hljs-built_in">string</span>
+}
+</code></pre>
+<pre><code class="hljs css js"><span class="hljs-comment">// Example:</span>
+<span class="hljs-comment">// Find 'package.json' in the master branch and print it out.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-keyword">let</span> repo = {fs, <span class="hljs-attr">dir</span>: <span class="hljs-string">'&lt;@.@&gt;'</span>}
+<span class="hljs-keyword">let</span> sha = <span class="hljs-keyword">await</span> git.resolveRef({...repo, <span class="hljs-attr">ref</span>: <span class="hljs-string">'&lt;@master@&gt;'</span>})
+<span class="hljs-built_in">console</span>.log(sha)
+<span class="hljs-keyword">let</span> { <span class="hljs-attr">object</span>: commit } = <span class="hljs-keyword">await</span> git.readObject({...repo, <span class="hljs-attr">oid</span>: sha})
+<span class="hljs-built_in">console</span>.log(commit)
+<span class="hljs-keyword">let</span> { <span class="hljs-attr">object</span>: tree } = <span class="hljs-keyword">await</span> git.readObject({...repo, <span class="hljs-attr">oid</span>: commit.tree})
+<span class="hljs-built_in">console</span>.log(tree)
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> file <span class="hljs-keyword">of</span> tree.entries) {
+  <span class="hljs-keyword">if</span> (file.path === <span class="hljs-string">'package.json'</span>) {
+    <span class="hljs-keyword">let</span> { <span class="hljs-attr">object</span>: blob } = <span class="hljs-keyword">await</span> git.readObject({...repo, <span class="hljs-attr">oid</span>: file.oid})
+    <span class="hljs-built_in">console</span>.log(blob.toString(<span class="hljs-string">'utf8'</span>))
+  }
+}
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'done'</span>)
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="resolveRef.html">← resolveRef</a><a class="docs-next button" href="indexPack.html">indexPack →</a></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/isomorphic-git-logo.svg" alt="isomorphic-git" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/" target="_blank">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" href="https://github.com/isomorphic-git/isomorphic-git" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a><a title="Web Analytics" href="http://clicky.com/101095086"><img alt="Web Analytics" src="//static.getclicky.com/media/links/badge.gif"/></a><noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101095086ns.gif"/></p></noscript></div></section></footer></div></body></html>
