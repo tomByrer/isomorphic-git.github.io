@@ -25,15 +25,23 @@ Password in Bitbucket lingo) and use that to authenticate.</p>
 <tr><td>return</td><td>{username: string, password: string}</td></tr>
 </tbody>
 </table>
-<pre><code class="hljs css js"><span class="hljs-keyword">let</span> {username, password} = auth(<span class="hljs-string">'username'</span>, <span class="hljs-string">'password'</span>)
+<pre><code class="hljs css js"><span class="hljs-keyword">let</span> credentials = git.utils.auth(<span class="hljs-string">'username'</span>, <span class="hljs-string">'password'</span>)
+<span class="hljs-built_in">console</span>.log(credentials)
 
 <span class="hljs-comment">// a one-argument version is also supported</span>
-<span class="hljs-keyword">let</span> {username, password} = auth(<span class="hljs-string">'username:password'</span>)
+credentials = git.utils.auth(<span class="hljs-string">'username:password'</span>)
+<span class="hljs-built_in">console</span>.log(credentials)
 
-<span class="hljs-comment">// Personal Access Token Authentication</span>
-<span class="hljs-comment">// (note Bitbucket calls theirs App Passwords instead for some reason)</span>
-<span class="hljs-keyword">let</span> {username, password} = auth(<span class="hljs-string">'username'</span>, <span class="hljs-string">'personal access token'</span>)
-<span class="hljs-keyword">let</span> {username, password} = auth(<span class="hljs-string">'username'</span>, <span class="hljs-string">'app password'</span>)
-<span class="hljs-keyword">let</span> {username, password} = auth(<span class="hljs-string">'personal access token'</span>) <span class="hljs-comment">// Github (only) lets you leave out the username</span>
+<span class="hljs-comment">// Github/Gitlab Personal Access Token Authentication</span>
+credentials = git.utils.auth(<span class="hljs-string">'username'</span>, <span class="hljs-string">'personal access token'</span>)
+<span class="hljs-built_in">console</span>.log(credentials)
+
+<span class="hljs-comment">// Bitbucket calls theirs App Passwords instead for some reason</span>
+credentials = git.utils.auth(<span class="hljs-string">'username'</span>, <span class="hljs-string">'app password'</span>)
+<span class="hljs-built_in">console</span>.log(credentials)
+
+<span class="hljs-comment">// Github (only) lets you leave out the username</span>
+credentials = git.utils.auth(<span class="hljs-string">'personal access token'</span>)
+<span class="hljs-built_in">console</span>.log(credentials)
 </code></pre>
 </span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="indexPack.html">← indexPack</a><a class="docs-next button" href="utils_oauth2.html">oauth2 →</a></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/isomorphic-git-logo.svg" alt="isomorphic-git" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/" target="_blank">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" href="https://github.com/isomorphic-git/isomorphic-git" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a><a title="Web Analytics" href="http://clicky.com/101095086"><img alt="Web Analytics" src="//static.getclicky.com/media/links/badge.gif"/></a><noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101095086ns.gif"/></p></noscript></div></section></footer></div></body></html>
