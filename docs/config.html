@@ -13,6 +13,7 @@
 <tbody>
 <tr><td><strong>fs</strong>, <strong>dir</strong>, gitdir</td><td>FSModule, string, string</td><td>The filesystem holding the git repo, the <a href="/docs/dir-vs-gitdir.html">working tree</a> directory path, and optionally the <a href="/docs/dir-vs-gitdir.html">git directory</a> path</td></tr>
 <tr><td><strong>path</strong></td><td>string</td><td>The key of the git config entry.</td></tr>
+<tr><td>all</td><td>boolean = true</td><td>If the config file contains multiple values, return them all as an array.</td></tr>
 <tr><td>value</td><td>string</td><td>(Optional) A value to store at that path.</td></tr>
 <tr><td>return</td><td>Promise&lt;any&gt;</td><td>Resolves with the config value</td></tr>
 </tbody>
@@ -20,7 +21,7 @@
 <p><em>Caveats:</em></p>
 <ul>
 <li>Currently only the local <code>$GIT_DIR/config</code> file can be read or written. However support for the global <code>~/.gitconfig</code> and system <code>$(prefix)/etc/gitconfig</code> will be added in the future.</li>
-<li>The current parser is simply a modified INI parser, so it does not support the more exotic features of the git-config file format such as <code>[include]</code> and <code>[includeIf]</code>.</li>
+<li>The current parser does not support the more exotic features of the git-config file format such as <code>[include]</code> and <code>[includeIf]</code>.</li>
 </ul>
 <pre><code class="hljs css js"><span class="hljs-keyword">let</span> repo = {fs, <span class="hljs-attr">dir</span>: <span class="hljs-string">'&lt;@.@&gt;'</span>}
 
