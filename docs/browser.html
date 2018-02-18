@@ -1,0 +1,130 @@
+<html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Browser Quick Start · isomorphic-git</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta property="og:title" content="Browser Quick Start · isomorphic-git"/><meta property="og:type" content="website"/><meta property="og:url" content="https://isomorphic-git.github.io/index.html"/><meta property="og:description" content="&lt;br&gt;"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/gitter.js"></script><script type="text/javascript" src="/js/sidecar.v1.js"></script><script type="text/javascript" src="/js/browserfs.js"></script><script type="text/javascript" src="https://unpkg.com/isomorphic-git"></script><script type="text/javascript" src="https://unpkg.com/openpgp@2.6.2/dist/openpgp.js"></script><script type="text/javascript" src="https://wzrd.in/standalone/pify@latest"></script><script type="text/javascript" src="/js/fs.js"></script><script type="text/javascript" src="/js/object-inspector.min.js"></script><script type="text/javascript" src="/js/tutorial.js"></script><script type="text/javascript" src="//static.getclicky.com/js"></script><script type="text/javascript" src="/js/analytics.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/isomorphic-git-logo.svg"/><h2 class="headerTitle">isomorphic-git</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li><a href="/docs/alphabetic.html" target="_self">API Docs</a></li><li><a href="/docs/quickstart.html" target="_self">Guide</a></li><li><a href="/en/help.html" target="_self">Help</a></li><li><a href="https://github.com/isomorphic-git/isomorphic-git" target="_self">Github</a></li><li><a href="https://npmjs.com/package/isomorphic-git" target="_self">npm</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Getting Started</span></h2></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Getting Started</h3><ul><li class="navListItem"><a class="navItem" href="/docs/quickstart.html">Quick Start</a></li><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/docs/browser.html">Browser Quick Start</a></li><li class="navListItem"><a class="navItem" href="/docs/fs.html">Bring Your Own FS</a></li><li class="navListItem"><a class="navItem" href="/docs/cli.html">isogit CLI</a></li><li class="navListItem"><a class="navItem" href="/docs/dir-vs-gitdir.html">dir vs gitdir</a></li></ul></div></div></section></div><script>
+          var toggler = document.getElementById('navToggler');
+          var nav = document.getElementById('docsNav');
+          toggler.onclick = function() {
+            nav.classList.toggle('docsSliderActive');
+          };
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1>Browser Quick Start</h1></header><article><div><span><p><br></p>
+<aside>
+If you've already done the tutorial or need a clean slate, you can run this snippet to clean up the file system.
+<pre><code class="hljs css js live">fs.getRootFS().empty()
+</code></pre>
+</aside>
+<p>Here's a whirlwind tour of the main features of <code>isomorphic-git</code>.</p>
+<p>First, let's set up BrowserFS and isomorphic-git. <em>Note: I've already done this.</em></p>
+<pre><code class="hljs css html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://wzrd.in/standalone/pify@latest"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://unpkg.com/browserfs@beta"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://unpkg.com/isomorphic-git"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+BrowserFS.configure({
+  <span class="hljs-attr">fs</span>: <span class="hljs-string">'IndexedDB'</span>, <span class="hljs-attr">options</span>: {}
+}, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err</span>) </span>{
+  <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> <span class="hljs-built_in">console</span>.log(err)
+  <span class="hljs-built_in">window</span>.fs = BrowserFS.BFSRequire(<span class="hljs-string">'fs'</span>)
+  <span class="hljs-built_in">window</span>.pfs = pify(fs) <span class="hljs-comment">// make a Promisified version</span>
+  <span class="hljs-built_in">window</span>.dir = <span class="hljs-string">'tutorial'</span>
+})
+
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<p>Now let's pick a directory to work in.</p>
+<pre><code class="hljs css js live"><span class="hljs-built_in">window</span>.dir = $input((<span class="hljs-string">'tutorial'</span>))
+<span class="hljs-built_in">console</span>.log(dir);
+<span class="hljs-keyword">await</span> pfs.mkdir(dir);
+<span class="hljs-comment">// Behold - it is empty!</span>
+<span class="hljs-keyword">await</span> pfs.readdir(dir);
+</code></pre>
+<p>Now that we've got an empty directory, let's clone a git repository.
+I'm cloning <code>isomorphic-git</code> itself (how meta!).
+I'm only cloning a single branch and only to a depth of 10 commits to save time, bandwidth, and browser storage space.
+Since Github hasn't added CORS headers to the git clone endpoint yet, we have to use a <a href="https://cors-buster-jfpactjnem.now.sh/">proxy server</a>.
+(They never suspected that a <em>browser</em> would want to run &quot;git clone&quot;!)</p>
+<pre><code class="hljs css js live"><span class="hljs-keyword">await</span> git.clone({
+    fs,
+    dir,
+    <span class="hljs-attr">url</span>: <span class="hljs-string">'https://cors-buster-jfpactjnem.now.sh/github.com/isomorphic-git/isomorphic-git'</span>,
+    <span class="hljs-attr">ref</span>: <span class="hljs-string">'master'</span>,
+    <span class="hljs-attr">singleBranch</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">depth</span>: <span class="hljs-number">10</span>
+});
+
+<span class="hljs-comment">// Now it should not be empty...</span>
+<span class="hljs-keyword">await</span> pfs.readdir(dir);
+</code></pre>
+<p>Great! We've got files. We've also got commits.
+Let's see what the recent history of this branch looks like.
+<em>Hint: be sure to expand the objects so you can see all the properties.</em></p>
+<pre><code class="hljs css js live"><span class="hljs-keyword">await</span> git.log({fs, dir})
+</code></pre>
+<p>Notice if you expand the very last log object you'll see it is actually an error message.
+That's because we only fetched 10 commits of history - we don't have the 11th commit.</p>
+<p>If we don't want that error at the end of the array, we can tell git.log exactly how deep to go:</p>
+<pre><code class="hljs css js live"><span class="hljs-keyword">await</span> git.log({fs, dir, <span class="hljs-attr">depth</span>: $input((<span class="hljs-number">10</span>))})
+</code></pre>
+<p>Git is used to track files. Let's see what kind of file things we can do!</p>
+<p>git.status is a major one. That let's us compare the working directory file to the current branch.</p>
+<pre><code class="hljs css js live"><span class="hljs-keyword">await</span> git.status({fs, dir, <span class="hljs-attr">filepath</span>: <span class="hljs-string">'$input((README.md))'</span>})
+</code></pre>
+<p>OK so the status is &quot;unmodified&quot; because we haven't modified it.
+What if we change the file by writing over it?</p>
+<pre><code class="hljs css js live"><span class="hljs-keyword">await</span> pfs.writeFile(<span class="hljs-string">`<span class="hljs-subst">${dir}</span>/README.md`</span>, <span class="hljs-string">'Very short README'</span>, <span class="hljs-string">'utf8'</span>)
+<span class="hljs-keyword">await</span> git.status({fs, dir, <span class="hljs-attr">filepath</span>: <span class="hljs-string">'README.md'</span>})
+</code></pre>
+<p>The status is &quot;<em>modified&quot; with a star.
+Text editors sometimes use a &quot;</em>&quot; in the title bar to indicate a file has unsaved changes.
+That's what is going on here - we've made changes to the file but we haven't added those changes to the git &quot;staging area&quot;.</p>
+<pre><code class="hljs css js live"><span class="hljs-keyword">await</span> git.add({fs, dir, <span class="hljs-attr">filepath</span>: <span class="hljs-string">'README.md'</span>})
+<span class="hljs-keyword">await</span> git.status({fs, dir, <span class="hljs-attr">filepath</span>: <span class="hljs-string">'README.md'</span>})
+</code></pre>
+<p>Now that we've done &quot;git add&quot; that little star has gone away and the status is just &quot;modified&quot;.</p>
+<p>What if we write a new file?</p>
+<pre><code class="hljs css js live"><span class="hljs-keyword">await</span> pfs.writeFile(<span class="hljs-string">`<span class="hljs-subst">${dir}</span>/newfile.txt`</span>, <span class="hljs-string">'Hello World'</span>, <span class="hljs-string">'utf8'</span>)
+<span class="hljs-keyword">await</span> git.status({fs, dir, <span class="hljs-attr">filepath</span>: <span class="hljs-string">'newfile.txt'</span>})
+</code></pre>
+<p>&quot;*added&quot; means the file has been added, but not staged. Simple to fix:</p>
+<pre><code class="hljs css js live"><span class="hljs-keyword">await</span> git.add({fs, dir, <span class="hljs-attr">filepath</span>: <span class="hljs-string">'newfile.txt'</span>})
+<span class="hljs-keyword">await</span> git.status({fs, dir, <span class="hljs-attr">filepath</span>: <span class="hljs-string">'newfile.txt'</span>})
+</code></pre>
+<p>The third and final trick: deleting a file:</p>
+<pre><code class="hljs css js live"><span class="hljs-keyword">await</span> pfs.unlink(<span class="hljs-string">`<span class="hljs-subst">${dir}</span>/package.json`</span>)
+<span class="hljs-keyword">await</span> git.status({fs, dir, <span class="hljs-attr">filepath</span>: <span class="hljs-string">'package.json'</span>})
+</code></pre>
+<p>This last bit has always been unintuitive to me... but you need to tell git you deleted the file.</p>
+<pre><code class="hljs css js live"><span class="hljs-keyword">await</span> git.remove({fs, dir, <span class="hljs-attr">filepath</span>: <span class="hljs-string">'package.json'</span>})
+<span class="hljs-keyword">await</span> git.status({fs, dir, <span class="hljs-attr">filepath</span>: <span class="hljs-string">'package.json'</span>})
+</code></pre>
+<p>What happens if you tell git you deleted a file but you really didn't?</p>
+<pre><code class="hljs css js live"><span class="hljs-keyword">await</span> git.remove({fs, dir, <span class="hljs-attr">filepath</span>: <span class="hljs-string">'package-lock.json'</span>})
+<span class="hljs-keyword">await</span> git.status({fs, dir, <span class="hljs-attr">filepath</span>: <span class="hljs-string">'package-lock.json'</span>})
+</code></pre>
+<p>Does that make sense? No? Sorry, naming things is hard. (Git doesn't do a great job of it either.
+It reports the file as &quot;untracked&quot; and &quot;deleted&quot; at the same time.) OK, enough messing around.</p>
+<pre><code class="hljs css js live"><span class="hljs-keyword">await</span> git.add({fs, dir, <span class="hljs-attr">filepath</span>: <span class="hljs-string">'package-lock.json'</span>})
+<span class="hljs-keyword">await</span> git.status({fs, dir, <span class="hljs-attr">filepath</span>: <span class="hljs-string">'package-lock.json'</span>})
+</code></pre>
+<p>Cool. So we've deleted package.json and replaced the README with the text &quot;Very short README&quot;.
+A solid day's work - let's commit those changes.</p>
+<pre><code class="hljs css js live"><span class="hljs-keyword">let</span> sha = <span class="hljs-keyword">await</span> git.commit({
+  fs,
+  dir,
+  <span class="hljs-attr">message</span>: <span class="hljs-string">'Delete package.json and overwrite README.'</span>,
+  <span class="hljs-attr">author</span>: {
+    <span class="hljs-attr">name</span>: <span class="hljs-string">'Mr. Test'</span>,
+    <span class="hljs-attr">email</span>: <span class="hljs-string">'mrtest@example.com'</span>
+  }
+})
+
+sha
+</code></pre>
+<p>git.commit returns the shasum of our new commit. Let's examine our handiwork:</p>
+<pre><code class="hljs css js live">commits = <span class="hljs-keyword">await</span> git.log({fs, dir, <span class="hljs-attr">depth</span>: <span class="hljs-number">1</span>})
+commits[<span class="hljs-number">0</span>]
+</code></pre>
+<p>I just had a brilliant idea. What if instead of starting out cloning <code>isomorphic-git</code>
+I had you the user create a new Github repo at the beginning with a default 'LICENSE.md' and 'README.md'?
+Then we could actually push the changes we've made here in this last step.</p>
+<p>When you create the repo, I'll have to add instructions for creating an access token for that repo so
+you can push the results. Wait, Github doesn't allow you to specify write permissions for an individual repo?
+Grr now they'll have to create an organization... wait that's a permanent name thing... ugh. I need
+to build a bot to automate this thing. It can create the repo, then give <em>you</em> access to it. Or something.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="quickstart.html">← Quick Start</a><a class="docs-next button" href="fs.html">Bring Your Own FS →</a></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/isomorphic-git-logo.svg" alt="isomorphic-git" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/" target="_blank">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" href="https://github.com/isomorphic-git/isomorphic-git" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a><a title="Web Analytics" href="http://clicky.com/101095086"><img alt="Web Analytics" src="//static.getclicky.com/media/links/badge.gif"/></a><noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101095086ns.gif"/></p></noscript></div></section></footer></div></body></html>

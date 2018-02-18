@@ -1882,6 +1882,7 @@ aside {
 }
 code {
   overflow: auto;
+  min-height: 3.5em;
 }
 .eval-button {
   background: #2E8555;
