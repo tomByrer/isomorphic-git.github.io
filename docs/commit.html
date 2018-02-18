@@ -21,14 +21,14 @@
 <tr><td>return</td><td>Promise&lt;void&gt;</td><td>Resolves successfully with the object ID (SHA) of the newly created commit.</td></tr>
 </tbody>
 </table>
-<pre><code class="hljs css js"><span class="hljs-keyword">let</span> repo = {fs, <span class="hljs-attr">dir</span>: <span class="hljs-string">'&lt;@.@&gt;'</span>}
+<pre><code class="hljs css js"><span class="hljs-keyword">let</span> repo = {fs, <span class="hljs-attr">dir</span>: <span class="hljs-string">'$input((.))'</span>}
 <span class="hljs-keyword">let</span> sha = <span class="hljs-keyword">await</span> git.commit({
   ...repo,
   <span class="hljs-attr">author</span>: {
-    <span class="hljs-attr">name</span>: <span class="hljs-string">'&lt;@Mr. Test@&gt;'</span>,
-    <span class="hljs-attr">email</span>: <span class="hljs-string">'&lt;@mrtest@example.com@&gt;'</span>
+    <span class="hljs-attr">name</span>: <span class="hljs-string">'$input((Mr. Test))'</span>,
+    <span class="hljs-attr">email</span>: <span class="hljs-string">'$input((mrtest@example.com))'</span>
   },
-  <span class="hljs-attr">message</span>: <span class="hljs-string">'&lt;@Added the a.txt file@&gt;'</span>
+  <span class="hljs-attr">message</span>: <span class="hljs-string">'$input((Added the a.txt file))'</span>
 })
 <span class="hljs-built_in">console</span>.log(sha)
 </code></pre>

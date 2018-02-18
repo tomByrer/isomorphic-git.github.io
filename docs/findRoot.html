@@ -19,7 +19,7 @@
 <p>Starting at <code>filepath</code>, walks upward until it finds a directory that contains a subdirectory called '.git'.</p>
 <pre><code class="hljs css js"><span class="hljs-keyword">let</span> gitroot = <span class="hljs-keyword">await</span> git.findRoot({
   fs,
-  <span class="hljs-attr">filepath</span>: <span class="hljs-string">'&lt;@/path/to/some/gitrepo/path/to/some/file.txt@&gt;'</span>
+  <span class="hljs-attr">filepath</span>: <span class="hljs-string">'$input((/path/to/some/gitrepo/path/to/some/file.txt))'</span>
 })
 <span class="hljs-built_in">console</span>.log(gitroot) <span class="hljs-comment">// '/path/to/some/gitrepo'</span>
 </code></pre>

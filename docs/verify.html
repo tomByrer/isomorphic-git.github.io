@@ -34,11 +34,11 @@ should support verifying a single commit signed with multiple keys. Hence why th
 <span class="hljs-keyword">let</span> keyids = <span class="hljs-keyword">await</span> git.verify({
   ...repo,
   openpgp,
-  <span class="hljs-attr">ref</span>: <span class="hljs-string">'&lt;@HEAD@&gt;'</span>,
-  <span class="hljs-attr">publicKeys</span>: <span class="hljs-string">`&lt;&lt;@
+  <span class="hljs-attr">ref</span>: <span class="hljs-string">'$input((HEAD))'</span>,
+  <span class="hljs-attr">publicKeys</span>: <span class="hljs-string">`$textarea((
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 ...
-@&gt;&gt;`</span>
+))`</span>
 })
 <span class="hljs-built_in">console</span>.log(keyids)
 </code></pre>

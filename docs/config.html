@@ -23,19 +23,19 @@
 <li>Currently only the local <code>$GIT_DIR/config</code> file can be read or written. However support for the global <code>~/.gitconfig</code> and system <code>$(prefix)/etc/gitconfig</code> will be added in the future.</li>
 <li>The current parser does not support the more exotic features of the git-config file format such as <code>[include]</code> and <code>[includeIf]</code>.</li>
 </ul>
-<pre><code class="hljs css js"><span class="hljs-keyword">let</span> repo = {fs, <span class="hljs-attr">dir</span>: <span class="hljs-string">'&lt;@.@&gt;'</span>}
+<pre><code class="hljs css js"><span class="hljs-keyword">let</span> repo = {fs, <span class="hljs-attr">dir</span>: <span class="hljs-string">'$input((.))'</span>}
 
 <span class="hljs-comment">// Write config value</span>
 <span class="hljs-keyword">await</span> git.config({
   ...repo,
-  <span class="hljs-attr">path</span>: <span class="hljs-string">'&lt;@user.name@&gt;'</span>,
-  <span class="hljs-attr">value</span>: <span class="hljs-string">'&lt;@Mr. Test@&gt;'</span>
+  <span class="hljs-attr">path</span>: <span class="hljs-string">'$input((user.name))'</span>,
+  <span class="hljs-attr">value</span>: <span class="hljs-string">'$input((Mr. Test))'</span>
 })
 
 <span class="hljs-comment">// Read config value</span>
 <span class="hljs-keyword">let</span> value = <span class="hljs-keyword">await</span> git.config({
   ...repo,
-  <span class="hljs-attr">path</span>: <span class="hljs-string">'&lt;@user.name@&gt;'</span>
+  <span class="hljs-attr">path</span>: <span class="hljs-string">'$input((user.name))'</span>
 })
 <span class="hljs-built_in">console</span>.log(value)
 </code></pre>

@@ -36,12 +36,12 @@
 </tbody>
 </table>
 <p>Example code:</p>
-<pre><code class="hljs css js"><span class="hljs-keyword">let</span> repo = {fs, <span class="hljs-attr">dir</span>: <span class="hljs-string">'&lt;@.@&gt;'</span>}
+<pre><code class="hljs css js"><span class="hljs-keyword">let</span> repo = {fs, <span class="hljs-attr">dir</span>: <span class="hljs-string">'$input((.))'</span>}
 <span class="hljs-keyword">await</span> git.clone({
   ...repo,
-  <span class="hljs-attr">url</span>: <span class="hljs-string">'&lt;@https://cors-buster-jfpactjnem.now.sh/github.com/isomorphic-git/isomorphic-git@&gt;'</span>,
-  <span class="hljs-attr">singleBranch</span>: <span class="hljs-literal">true</span>,
-  <span class="hljs-attr">depth</span>: <span class="hljs-number">1</span>
+  <span class="hljs-attr">url</span>: <span class="hljs-string">'$input((https://cors-buster-jfpactjnem.now.sh/github.com/isomorphic-git/isomorphic-git))'</span>,
+  <span class="hljs-attr">singleBranch</span>: $input((<span class="hljs-literal">true</span>)),
+  <span class="hljs-attr">depth</span>: $input((<span class="hljs-number">1</span>))
 })
 <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'done'</span>)
 </code></pre>

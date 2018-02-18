@@ -26,14 +26,14 @@ leaving the original commit dangling.</p>
 <p>The <code>privateKeys</code> argument is a single string in ASCII armor format. However, it is plural &quot;keys&quot; because
 you can technically have multiple private keys in a single ASCII armor string. The openpgp.sign() function accepts
 multiple keys, so while I haven't tested it, it should support signing a single commit with multiple keys.</p>
-<pre><code class="hljs css js"><span class="hljs-keyword">let</span> repo = {fs, <span class="hljs-attr">dir</span>: <span class="hljs-string">'&lt;@.@&gt;'</span>}
+<pre><code class="hljs css js"><span class="hljs-keyword">let</span> repo = {fs, <span class="hljs-attr">dir</span>: <span class="hljs-string">'$input((.))'</span>}
 <span class="hljs-keyword">let</span> sha = <span class="hljs-keyword">await</span> git.sign({
   ...repo,
   openpgp,
-  <span class="hljs-attr">privateKeys</span>: <span class="hljs-string">`&lt;&lt;@
+  <span class="hljs-attr">privateKeys</span>: <span class="hljs-string">`$textarea((
 -----BEGIN PGP PRIVATE KEY BLOCK-----
 ...
-@&gt;&gt;`</span>
+))`</span>
 })
 <span class="hljs-built_in">console</span>.log(sha)
 </code></pre>

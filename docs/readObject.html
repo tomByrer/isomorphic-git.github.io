@@ -51,8 +51,8 @@
 <pre><code class="hljs css js"><span class="hljs-comment">// Example:</span>
 <span class="hljs-comment">// Find 'package.json' in the master branch and print it out.</span>
 <span class="hljs-comment">//</span>
-<span class="hljs-keyword">let</span> repo = {fs, <span class="hljs-attr">dir</span>: <span class="hljs-string">'&lt;@.@&gt;'</span>}
-<span class="hljs-keyword">let</span> sha = <span class="hljs-keyword">await</span> git.resolveRef({...repo, <span class="hljs-attr">ref</span>: <span class="hljs-string">'&lt;@master@&gt;'</span>})
+<span class="hljs-keyword">let</span> repo = {fs, <span class="hljs-attr">dir</span>: <span class="hljs-string">'$input((.))'</span>}
+<span class="hljs-keyword">let</span> sha = <span class="hljs-keyword">await</span> git.resolveRef({...repo, <span class="hljs-attr">ref</span>: <span class="hljs-string">'$input((master))'</span>})
 <span class="hljs-built_in">console</span>.log(sha)
 <span class="hljs-keyword">let</span> { <span class="hljs-attr">object</span>: commit } = <span class="hljs-keyword">await</span> git.readObject({...repo, <span class="hljs-attr">oid</span>: sha})
 <span class="hljs-built_in">console</span>.log(commit)

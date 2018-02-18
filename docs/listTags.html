@@ -14,7 +14,7 @@
 <tr><td>return</td><td>Promise&lt;Array&lt;string&gt;&gt;</td><td>Resolves successfully with an array of tag names</td></tr>
 </tbody>
 </table>
-<pre><code class="hljs css js"><span class="hljs-keyword">let</span> repo = {fs, <span class="hljs-attr">dir</span>: <span class="hljs-string">'&lt;@.@&gt;'</span>}
+<pre><code class="hljs css js"><span class="hljs-keyword">let</span> repo = {fs, <span class="hljs-attr">dir</span>: <span class="hljs-string">'$input((.))'</span>}
 <span class="hljs-keyword">let</span> tags = <span class="hljs-keyword">await</span> git.listTags(repo)
 <span class="hljs-built_in">console</span>.log(tags)
 </code></pre>
