@@ -34,7 +34,7 @@
 <tr><td>return</td><td>Promise&lt;string&gt;</td><td>Resolves successfully with the file's git status</td></tr>
 </tbody>
 </table>
-<pre><code class="hljs"><span class="hljs-keyword">let</span> repo = {fs, <span class="hljs-attr">dir</span>: <span class="hljs-string">'$input((.))'</span>}
+<pre><code class="hljs css js live"><span class="hljs-keyword">let</span> repo = {fs, <span class="hljs-attr">dir</span>: <span class="hljs-string">'$input((.))'</span>}
 <span class="hljs-keyword">let</span> status = <span class="hljs-keyword">await</span> git.status({...repo, <span class="hljs-attr">filepath</span>: <span class="hljs-string">'$input((README.md))'</span>})
 <span class="hljs-built_in">console</span>.log(status)
 </code></pre>
