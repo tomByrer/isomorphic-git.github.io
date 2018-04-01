@@ -4,7 +4,7 @@
         <title>isomorphic-git Blog</title>
         <link>https://isomorphic-git.github.io/blog</link>
         <description>The best place to stay up-to-date with the latest isomorphic-git news and events.</description>
-        <lastBuildDate>Sun, 18 Feb 2018 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 02 Apr 2018 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,17 @@
             <link>https://isomorphic-git.github.io/blog</link>
         </image>
         <copyright>Copyright © 2018 Isomorphic-git Contributors</copyright>
+        <item>
+            <title><![CDATA[Contributing Workflow]]></title>
+            <link>https://isomorphic-git.github.io/blog/2018/04/02/contributing-workflow.html</link>
+            <guid>https://isomorphic-git.github.io/blog/2018/04/02/contributing-workflow.html</guid>
+            <pubDate>Mon, 02 Apr 2018 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>I have gotten questions along the lines of &quot;how do I get started working on the code&quot;?
+So I thought I would walk through what my development process looks like.</p>
+<p>Step one: Pick an issue.
+Today I feel like knocking out an easy bug that I should alread</p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[Introducing `isomorphic-git`]]></title>
             <link>https://isomorphic-git.github.io/blog/2018/02/18/introducing-isomorphic-git.html</link>
