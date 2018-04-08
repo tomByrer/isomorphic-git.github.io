@@ -16,6 +16,7 @@
 <tr><td>url</td><td>string=undefined</td><td>The URL of the remote git server. The default is the value set in the git config for that remote.</td></tr>
 <tr><td>authUsername</td><td>string=undefined</td><td>The username to use with Basic Auth</td></tr>
 <tr><td>authPassword</td><td>string=undefined</td><td>The password to use with Basic Auth</td></tr>
+<tr><td>emitter</td><td>EventEmitter = undefined</td><td>Listeners to this EventEmitter can receive 'message' events.</td></tr>
 <tr><td>return</td><td>Promise&lt;PushResponse&gt;</td><td>Resolves successfully when push completes with a detailed description of the operation from the server.</td></tr>
 </tbody>
 </table>
@@ -28,6 +29,15 @@
 <tbody>
 <tr><td>ok</td><td>Array&lt;string&gt;</td><td>The first item is &quot;unpack&quot; if the overall operation was successful. The remaining items are the names of refs that were updated successfully.</td></tr>
 <tr><td>errors</td><td>Array&lt;string&gt;</td><td>If the overall operation threw and error, the first item will be &quot;unpack {Overall error message}&quot;. The remaining items are individual refs that failed to be updated in the format &quot;{ref name} {error message}&quot;.</td></tr>
+</tbody>
+</table>
+<p>To monitor progress, create an EventEmitter, add listeners, and pass into the function as the <code>emitter</code> argument.</p>
+<table>
+<thead>
+<tr><th>event</th><th>type</th><th>description</th></tr>
+</thead>
+<tbody>
+<tr><td>message</td><td>string</td><td>The messages from the remote git server, normally shown in the git console prefixed with &quot;<code>remote:</code>&quot;</td></tr>
 </tbody>
 </table>
 <pre><code class="hljs css js live"><span class="hljs-keyword">let</span> repo = {fs, <span class="hljs-attr">dir</span>: <span class="hljs-string">'$input((.))'</span>}
