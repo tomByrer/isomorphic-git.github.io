@@ -26,6 +26,9 @@
 <tr><td>return</td><td>Promise&lt;FetchResponse&gt;</td><td>Resolves successfully when fetch completes</td></tr>
 </tbody>
 </table>
+<blockquote>
+<p>Need to use a Personal Access Token or OAuth? See the <a href="utils_auth.html"><code>utils.auth</code></a> and <a href="utils_oauth2.html"><code>utils.oauth2</code></a> functions.</p>
+</blockquote>
 <p>The object returned has the following schema:</p>
 <pre><code class="hljs css ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> FetchResponse {
   defaultBranch: <span class="hljs-built_in">string</span> <span class="hljs-comment">// The branch that is cloned if no branch is specified (typically "master")</span>

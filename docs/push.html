@@ -20,6 +20,9 @@
 <tr><td>return</td><td>Promise&lt;PushResponse&gt;</td><td>Resolves successfully when push completes with a detailed description of the operation from the server.</td></tr>
 </tbody>
 </table>
+<blockquote>
+<p>Need to use a Personal Access Token or OAuth? See the <a href="utils_auth.html"><code>utils.auth</code></a> and <a href="utils_oauth2.html"><code>utils.oauth2</code></a> functions.</p>
+</blockquote>
 <p>The push command returns an object that describes the result of the attempted push operation.
 <em>Notes:</em> If there were no errors, then there will be no <code>errors</code> property. There can be a mix of <code>ok</code> messages and <code>errors</code> messages.</p>
 <table>
