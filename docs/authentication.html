@@ -30,8 +30,7 @@ OAuth2 tokens from the service via a feature like &quot;Login with your Github a
 Depending on the OAuth2 token's grants, you can use those tokens for pushing and pulling from git repos as well.
 Unfortunately, all the major git hosting companies have chosen different conventions for converting
 OAuth2 tokens into Basic Authentication headers! Therefore it is necessary to specify which company's
-convention you are interacting with via the <code>oauth2format</code> parameter. If an <code>oauth2format</code> parameter
-is present, then <code>username</code> and <code>password</code> parameters will be ignored, and only the value of <code>oauth2format</code> and <code>token</code> matter.
+convention you are interacting with via the <code>oauth2format</code> parameter.
 Currently, the following values are understood:</p>
 <table>
 <thead>
@@ -60,18 +59,18 @@ Currently, the following values are understood:</p>
 <tr><td>X</td><td></td><td></td><td></td><td>Error &quot;Missing token or password&quot;</td></tr>
 <tr><td></td><td>X</td><td></td><td></td><td>Error &quot;Missing username&quot;</td></tr>
 <tr><td>X</td><td>X</td><td></td><td></td><td><code>{authUsername: username, authPassword: password}</code></td></tr>
-<tr><td></td><td></td><td>X</td><td></td><td>Github's alternative form <code>{authUsername: token, authPassword: ''}</code></td></tr>
+<tr><td></td><td></td><td>X</td><td></td><td><code>{authUsername: token, authPassword: ''}</code> (Github's alternative format)</td></tr>
 <tr><td>X</td><td></td><td>X</td><td></td><td><code>{authUsername: username, authPassword: token}</code></td></tr>
-<tr><td></td><td>X</td><td>X</td><td></td><td>Error &quot;Missing username&quot;</td></tr>
-<tr><td>X</td><td>X</td><td>X</td><td></td><td>Error &quot;Can't have both token and password&quot;</td></tr>
+<tr><td></td><td>X</td><td>X</td><td></td><td>Error &quot;Cannot mix 'password' with 'token'&quot;</td></tr>
+<tr><td>X</td><td>X</td><td>X</td><td></td><td>Error &quot;Cannot mix 'password' with 'token'&quot;</td></tr>
 <tr><td></td><td></td><td></td><td>X</td><td>Error &quot;Missing token&quot;</td></tr>
-<tr><td>X</td><td></td><td></td><td>X</td><td>Error &quot;Missing token&quot;</td></tr>
-<tr><td></td><td>X</td><td></td><td>X</td><td>Error &quot;Missing token&quot;</td></tr>
-<tr><td>X</td><td>X</td><td></td><td>X</td><td>Error &quot;Missing token&quot;</td></tr>
+<tr><td>X</td><td></td><td></td><td>X</td><td>Error &quot;Cannot mix 'username' with 'oauth2format'. Missing token.&quot;</td></tr>
+<tr><td></td><td>X</td><td></td><td>X</td><td>Error &quot;Cannot mix 'password' with 'oauth2format'. Missing token.&quot;</td></tr>
+<tr><td>X</td><td>X</td><td></td><td>X</td><td>Error &quot;Cannot mix 'username' and 'password' with 'oauth2format'. Missing token.&quot;</td></tr>
 <tr><td></td><td></td><td>X</td><td>X</td><td>as described in the oauth2format table above</td></tr>
-<tr><td>X</td><td></td><td>X</td><td>X</td><td>as described in the oauth2format table above</td></tr>
-<tr><td></td><td>X</td><td>X</td><td>X</td><td>as described in the oauth2format table above</td></tr>
-<tr><td>X</td><td>X</td><td>X</td><td>X</td><td>as described in the oauth2format table above</td></tr>
+<tr><td>X</td><td></td><td>X</td><td>X</td><td>Error &quot;Cannot mix 'username' with 'oauth2format' and 'token'&quot;</td></tr>
+<tr><td></td><td>X</td><td>X</td><td>X</td><td>Error &quot;Cannot mix 'password' with 'oauth2format' and 'token'&quot;</td></tr>
+<tr><td>X</td><td>X</td><td>X</td><td>X</td><td>Error &quot;Cannot mix 'username' and 'password' with 'oauth2format' and 'token'&quot;</td></tr>
 </tbody>
 </table>
 </span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="fs.html">← Bring Your Own FS</a><a class="docs-next button" href="cli.html">isogit CLI →</a></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/isomorphic-git-logo.svg" alt="isomorphic-git" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/quickstart.html">Getting Started</a><a href="/docs/en/alphabetic.html">API Reference</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://gitter.im/isomorphic-git/Lobby">Project Chat</a><a class="github-button" href="https://github.com/isomorphic-git/isomorphic-git" data-icon="octicon-star" data-count-href="/isomorphic-git/isomorphic-git/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Github</a></div><div><h5>More</h5><a href="/docs/en/in-the-news.html">In The News</a><a href="/blog">Blog</a></div><div><h5>Ad</h5><div id="codefund_ad"></div></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
