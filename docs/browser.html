@@ -56,11 +56,6 @@ Let's see what the recent history of this branch looks like.
 <em>Hint: be sure to expand the objects so you can see all the properties.</em></p>
 <pre><code class="hljs css js live"><span class="hljs-keyword">await</span> git.log({fs, dir})
 </code></pre>
-<p>Notice if you expand the very last log object you'll see it is actually an error message.
-That's because we only fetched 10 commits of history - we don't have the 11th commit.</p>
-<p>If we don't want that error at the end of the array, we can tell git.log exactly how deep to go:</p>
-<pre><code class="hljs css js live"><span class="hljs-keyword">await</span> git.log({fs, dir, <span class="hljs-attr">depth</span>: $input((<span class="hljs-number">10</span>))})
-</code></pre>
 <p>Git is used to track files. Let's see what kind of file things we can do!</p>
 <p>git.status is a major one. That let's us compare the working directory file to the current branch.</p>
 <pre><code class="hljs css js live"><span class="hljs-keyword">await</span> git.status({fs, dir, <span class="hljs-attr">filepath</span>: <span class="hljs-string">'$input((README.md))'</span>})
@@ -70,8 +65,8 @@ What if we change the file by writing over it?</p>
 <pre><code class="hljs css js live"><span class="hljs-keyword">await</span> pfs.writeFile(<span class="hljs-string">`<span class="hljs-subst">${dir}</span>/README.md`</span>, <span class="hljs-string">'Very short README'</span>, <span class="hljs-string">'utf8'</span>)
 <span class="hljs-keyword">await</span> git.status({fs, dir, <span class="hljs-attr">filepath</span>: <span class="hljs-string">'README.md'</span>})
 </code></pre>
-<p>The status is &quot;<em>modified&quot; with a star.
-Text editors sometimes use a &quot;</em>&quot; in the title bar to indicate a file has unsaved changes.
+<p>The status is &quot;*modified&quot; with a star.
+Text editors sometimes use a &quot;*&quot; in the title bar to indicate a file has unsaved changes.
 That's what is going on here - we've made changes to the file but we haven't added those changes to the git &quot;staging area&quot;.</p>
 <pre><code class="hljs css js live"><span class="hljs-keyword">await</span> git.add({fs, dir, <span class="hljs-attr">filepath</span>: <span class="hljs-string">'README.md'</span>})
 <span class="hljs-keyword">await</span> git.status({fs, dir, <span class="hljs-attr">filepath</span>: <span class="hljs-string">'README.md'</span>})
@@ -120,13 +115,15 @@ sha
 <pre><code class="hljs css js live">commits = <span class="hljs-keyword">await</span> git.log({fs, dir, <span class="hljs-attr">depth</span>: <span class="hljs-number">1</span>})
 commits[<span class="hljs-number">0</span>]
 </code></pre>
-<p>I just had a brilliant idea. What if instead of starting out cloning <code>isomorphic-git</code>
+<!--
+I just had a brilliant idea. What if instead of starting out cloning `isomorphic-git`
 I had you the user create a new Github repo at the beginning with a default 'LICENSE.md' and 'README.md'?
-Then we could actually push the changes we've made here in this last step.</p>
+Then we could actually push the changes we've made here in this last step.
 <p>When you create the repo, I'll have to add instructions for creating an access token for that repo so
 you can push the results. Wait, Github doesn't allow you to specify write permissions for an individual repo?
 Grr now they'll have to create an organization... wait that's a permanent name thing... ugh. I need
-to build a bot to automate this thing. It can create the repo, then give <em>you</em> access to it. Or something.</p>
+to build a bot to automate this thing. It can create the repo, then give <em>you</em> access to it. Or something.
+--&gt;</p>
 </span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="quickstart.html">← Quick Start</a><a class="docs-next button" href="fs.html">Bring Your Own FS →</a></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/isomorphic-git-logo.svg" alt="isomorphic-git" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/quickstart.html">Getting Started</a><a href="/docs/en/alphabetic.html">API Reference</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="https://gitter.im/isomorphic-git/Lobby">Project Chat</a><a class="github-button" href="https://github.com/isomorphic-git/isomorphic-git" data-icon="octicon-star" data-count-href="/isomorphic-git/isomorphic-git/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Github</a></div><div><h5>More</h5><a href="/docs/en/in-the-news.html">In The News</a><a href="/blog">Blog</a></div><div><h5>Ad</h5><div id="codefund_ad"></div></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
               var search = docsearch({
                 
